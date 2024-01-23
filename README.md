@@ -1,1 +1,1 @@
-This is a CSC4120 Assignment Repo
+This is a CSC4120 group repository.
