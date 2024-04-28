@@ -1,4 +1,5 @@
 import networkx as nx
+import matplotlib.pyplot as plt
 
 def mtsp_dp(G):
     """
@@ -17,5 +18,5 @@ def mtsp_dp(G):
     It can only go through edges that exist in the graph..
     It must visit every node in G exactly once.
     """
-    
+    return
     return tour
