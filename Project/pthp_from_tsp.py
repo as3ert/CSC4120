@@ -16,8 +16,22 @@ def access_floyd_warshall(G):
     print(results)
 
 def pthp_to_tsp(G, H):
-    # Create a new TSP graph
+    """
+    Transforms a given PTHP graph G and a subset of its home nodes H into a TSP problem 
+    and records shortest paths between nodes.
+    
+    Parameters:
+        G (nx.Graph): The original graph.
+        H (list): A subset of home nodes in G to include in the TSP.
+        
+    Returns:
+        nx.Graph: A graph representing the TSP problem.
+        dict: A dictionary containing shortest paths between all pairs of nodes.
+    """
+
     TSP = nx.Graph()
+    shortest_path = {}
+
     TSP.add_node(0)
     TSP.add_nodes_from(H)
 
@@ -25,12 +39,16 @@ def pthp_to_tsp(G, H):
     for from_node in TSP.nodes:
         for to_node in TSP.nodes:
             if from_node != to_node:
-                TSP.add_edge(from_node, to_node, weight=nx.shortest_path_length(G, from_node, to_node, 'weight'))
+                path = nx.shortest_path(G, from_node, to_node, 'weight')
+                path_length = nx.shortest_path_length(G, from_node, to_node, 'weight')
+                TSP.add_edge(from_node, to_node, weight=path_length)
+
+                shortest_path[(from_node, to_node)] = path
     
     # Optional: Draw the TSP graph
-    draw_gragh(TSP)
+    # draw_gragh(TSP)
 
-    return TSP
+    return TSP, shortest_path
 
 def pthp_solver_from_tsp(G, H):
     """
@@ -55,7 +73,7 @@ def pthp_solver_from_tsp(G, H):
     """
     draw_gragh(G)
 
-    TSP = pthp_to_tsp(G, H)
+    TSP, shortest_path = pthp_to_tsp(G, H)
 
     return
     
