@@ -72,17 +72,15 @@ def pthp_solver_from_tsp(G, H):
     It must visit every node in H.
     """
     draw_gragh(G)
-
     TSP, shortest_path = pthp_to_tsp(G, H)
-
-    return
+    # reduction
+    tsp_tour = mtsp_dp(TSP)
+    tour=[0]
+    for i in range(len(tsp_tour)-1):
+        tour += shortest_path[tsp_tour[i], tsp_tour[i+1]][1:]
+    # reduction
+    print(tour)
     
-    # reduction
-
-    tsp_tour = mtsp_dp(reduced_graph)
-
-    # reduction
-
     return tour
 
 
