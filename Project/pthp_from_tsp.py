@@ -71,7 +71,7 @@ def pthp_solver_from_tsp(G, H):
     It can only go through edges that exist in the graph..
     It must visit every node in H.
     """
-    draw_gragh(G)
+    # draw_gragh(G)
     TSP, shortest_path = pthp_to_tsp(G, H)
     # reduction
     tsp_tour = mtsp_dp(TSP)
